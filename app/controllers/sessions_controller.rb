@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   def new
   end
 
+  # POST /sessions
   def create
     user = User.find_by(email: params[:email])
 

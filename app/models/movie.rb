@@ -23,15 +23,25 @@ class Movie < ActiveRecord::Base
   validate :release_date_is_in_the_past
 
   def review_average
+    if reviews.size == 0
+      return 0
+    end
     reviews.sum(:rating_out_of_ten)/reviews.size
   end
 
   protected
 
   def release_date_is_in_the_past
-    if release_date.present?
-      errors.add(:release_date, "should be in the past") if release_date > Date.today
+    # if release_date.present?
+    #   if release_date > Date.today
+    #     errors.add(:release_date, "should be in the past") 
+    #   end
+    # end
+
+    if release_date.present? && release_date > Date.today
+      errors.add(:release_date, "should be in the past") 
     end
+
   end
 
 end
