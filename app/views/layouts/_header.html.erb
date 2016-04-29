@@ -1,0 +1,9 @@
+<header>
+  <%= form_tag("/movies", method: "get") do %>
+    <%= label_tag(:q, "Title") %>
+    <%= text_field_tag(:q) %>
+    <%= label_tag(:p, "Director") %>
+    <%= text_field_tag(:p) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+</header>

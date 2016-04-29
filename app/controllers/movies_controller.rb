@@ -3,6 +3,12 @@ class MoviesController < ApplicationController
   
   def index
     @movies = Movie.all
+    if params[:q]
+      @movies = @movies.where("lower(title) like ?", "%#{params[:q].downcase}%")
+    end
+    if params[:p]
+      @movies = @movies.where("lower(director) like ?", "%#{params[:p].downcase}%")
+    end
     render :index
   end
 
